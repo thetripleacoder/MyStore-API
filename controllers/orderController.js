@@ -54,8 +54,9 @@ module.exports.getAllOrders = (req, res) => {
 };
 
 module.exports.getUserSpecificOrder = (req, res) => {
+  let userId = req.user.id;
   let orderId = req.params.orderId;
-  Order.find({ _id: orderId })
+  Order.find({ buyer: userId, _id: orderId })
     .populate('buyer', {
       _id: 0,
       firstName: 1,
