@@ -95,7 +95,7 @@ module.exports.login = (req, res) => {
 module.exports.getUserDetails = (req, res) => {
   let userId = req.user.id;
   User.find({ _id: userId })
-    .select('firstName lastName address mobileNo')
+    .select('firstName lastName address email mobileNo')
     .then((foundUser) => {
       res.send({ data: foundUser });
     })
@@ -136,7 +136,7 @@ module.exports.updateUserDetails = (req, res) => {
     };
 
     User.findByIdAndUpdate(userId, updates, options)
-      .select('firstName lastName address mobileNo')
+      .select('firstName lastName address email mobileNo')
       .then((updatedUser) => {
         res.send(updatedUser);
       })
