@@ -10,7 +10,7 @@ module.exports.createOrder = (req, res) => {
     buyer: userId,
     products: [
       {
-        product: productId,
+        productId: productId,
       },
     ],
   });
@@ -39,11 +39,11 @@ module.exports.createOrder = (req, res) => {
 module.exports.addProduct = (req, res) => {
   let userId = req.user.id;
   let orderId = req.params.orderId;
-  let product = req.body;
+  let productId = req.body;
   Order.find({ buyer: userId, _id: orderId })
     .then((foundOrder) => {
       let price = foundOrder.price;
-      foundOrder.products.push(product);
+      foundOrder.products.push(productId);
       foundOrder.totalAmount += price;
       return foundOrder.save().then((savedOrder) => {
         res.send({
