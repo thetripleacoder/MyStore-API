@@ -33,7 +33,7 @@ router.put(
 );
 router.get(
   '/products/archived/admin',
-  auth.verify.apply,
+  auth.verify,
   auth.verifyIsAdmin,
   productController.getAllArchiveProducts
 );
