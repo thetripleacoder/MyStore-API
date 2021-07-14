@@ -42,9 +42,9 @@ module.exports.addProduct = (req, res) => {
   let product = req.body;
   Order.find({ buyer: userId, _id: orderId })
     .then((foundOrder) => {
-      let products = foundOrder.products;
-      products.push(product);
-      foundOrder.totalAmount += foundProduct.price;
+      let price = foundOrder.price;
+      foundOrder.products.push(product);
+      foundOrder.totalAmount += price;
       return foundOrder.save().then((savedOrder) => {
         res.send({
           message: 'Product added successfully!',
