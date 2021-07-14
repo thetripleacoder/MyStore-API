@@ -16,10 +16,16 @@ router.post(
   orderController.createOrder
 );
 router.get(
-  '/user/orders/details',
+  '/user/orders',
   auth.verify,
   auth.verifyIsOrdinaryUser,
   orderController.getUserOrders
+);
+router.get(
+  '/user/orders/:orderId',
+  auth.verify,
+  auth.verifyIsOrdinaryUser,
+  orderController.getSpecificOrder
 );
 router.get(
   '/admin/orders',
