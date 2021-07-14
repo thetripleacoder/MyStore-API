@@ -1,16 +1,16 @@
 const Order = require('../models/orderModel');
-const User = require('../models/userModel');
-const Product = require('../models/productModel');
+// const User = require('../models/userModel');
+// const Product = require('../models/productModel');
 
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
-  let productId = req.body.productId;
+  let productId = req.body;
 
   let newOrder = new Order({
     buyer: userId,
   });
-  Product.findOne({ _id: productId })
-    .then((foundProduct) => {
+  Order.findOne({ _id: newOrder.id })
+    .then((foundOrder) => {
       newOrder.products.push(productId);
       return newOrder
         .save()
