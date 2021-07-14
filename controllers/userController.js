@@ -128,10 +128,10 @@ module.exports.updateUserDetails = (req, res) => {
     address != undefined &&
     mobileNo != undefined
   ) {
-    return User.findByIdAndUpdate(req.user.id, updates, options)
-
+    User.findByIdAndUpdate(req.user.id, updates, options)
+      .select('firstName lastName address mobileNo')
       .then((updatedUser) => {
-        res.send(updatedUser).select('firstName lastName address mobileNo');
+        res.send(updatedUser);
       })
       .catch((err) => {
         res.send(err);
