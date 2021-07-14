@@ -36,27 +36,27 @@ module.exports.createOrder = (req, res) => {
     });
 };
 
-// module.exports.addProduct = (req, res) => {
-//   let userId = req.user.id;
-//   let orderId = req.params.orderId;
-//   let product = req.body.productId;
-//   Order.find({ buyer: userId, _id: orderId })
-//     .then((foundOrder) => {
-//       let foundOrder.products
-//       foundOrder.products.push(product);
-//       foundOrder.totalAmount += product.price;
-//       return foundOrder.save().then((savedOrder) => {
-//         res.send({
-//           message: 'Product added successfully!',
-//           newData: savedOrder,
-//         });
-//       });
-//     })
+module.exports.addProduct = (req, res) => {
+  let userId = req.user.id;
+  let orderId = req.params.orderId;
+  let product = req.body;
+  Order.find({ buyer: userId, _id: orderId })
+    .then((foundOrder) => {
+      let products = foundOrder.products;
+      foundOrder.products.push(product);
+      foundOrder.totalAmount += foundProduct.price;
+      return foundOrder.save().then((savedOrder) => {
+        res.send({
+          message: 'Product added successfully!',
+          newData: savedOrder,
+        });
+      });
+    })
 
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// };
+    .catch((err) => {
+      res.send(err);
+    });
+};
 
 module.exports.getUserOrders = (req, res) => {
   let userId = req.user.id;
