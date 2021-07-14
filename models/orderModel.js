@@ -18,17 +18,17 @@ const orderSchema = new mongoose.Schema({
   },
   products: [
     {
-      productId: {
-        type: String,
-        required: [true, 'Course ID is required'],
-      },
       addedOn: {
         type: Date,
-        default: date.now,
+        default: new Date(),
       },
-      status: {
-        type: String,
-        default: 'ordered',
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+      },
+      quantity: {
+        type: Number,
+        required: [true, 'Quantity is required'],
       },
     },
   ],
