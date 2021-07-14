@@ -124,7 +124,7 @@ module.exports.updateUserDetails = (req, res) => {
   };
 
   User.findByIdAndUpdate(userId, req.body, options)
-    .select('firstName lastName address email mobileNo')
+    .select('firstName lastName address email mobileNo -_id')
     .then((updatedUser) => {
       res.send(updatedUser);
     })
