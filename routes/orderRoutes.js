@@ -15,12 +15,12 @@ router.post(
   auth.verifyIsOrdinaryUser,
   orderController.createOrder
 );
-router.post(
-  '/users/checkout/:orderId',
-  auth.verify,
-  auth.verifyIsOrdinaryUser,
-  orderController.addProduct
-);
+// router.post(
+//   '/users/checkout/:orderId',
+//   auth.verify,
+//   auth.verifyIsOrdinaryUser,
+//   orderController.addProduct
+// );
 router.get(
   '/user/orders',
   auth.verify,

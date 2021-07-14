@@ -1,11 +1,10 @@
 const Order = require('../models/orderModel');
 // const User = require('../models/userModel');
-// const Product = require('../models/productModel');
+const Product = require('../models/productModel');
 
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
   let productId = req.body.productId;
-  let totalAmount = productId.price;
 
   let newOrder = new Order({
     buyer: userId,
@@ -14,42 +13,50 @@ module.exports.createOrder = (req, res) => {
         product: productId,
       },
     ],
-    totalAmount: totalAmount,
   });
 
-  return newOrder
-    .save()
-    .then((savedOrder) => {
-      res.send({
-        message: 'Order created successfully!',
-        newData: savedOrder,
-      });
-    })
-    .catch((err) => {
-      res.send({ message: 'All fields are required!' });
-    });
-};
-
-module.exports.addProduct = (req, res) => {
-  let userId = req.user.id;
-  let orderId = req.params.orderId;
-  let product = req.body.productId;
-  Order.find({ buyer: userId, _id: orderId })
-    .then((foundOrder) => {
-      foundOrder.products.push(product);
-      foundOrder.totalAmount += product.price;
-      return foundOrder.save().then((savedOrder) => {
-        res.send({
-          message: 'Product added successfully!',
-          newData: savedOrder,
+  Product.findOne({ _id: productId })
+    .then((foundProduct) => {
+      let price = foundProduct.price;
+      newOrder.totalAmount.push(price);
+      return newOrder
+        .save()
+        .then((savedOrder) => {
+          res.send({
+            message: 'Order created successfully!',
+            newData: savedOrder,
+          });
+        })
+        .catch((err) => {
+          res.send({ message: 'All fields are required!' });
         });
-      });
     })
-
     .catch((err) => {
       res.send(err);
     });
 };
+
+// module.exports.addProduct = (req, res) => {
+//   let userId = req.user.id;
+//   let orderId = req.params.orderId;
+//   let product = req.body.productId;
+//   Order.find({ buyer: userId, _id: orderId })
+//     .then((foundOrder) => {
+//       let foundOrder.products
+//       foundOrder.products.push(product);
+//       foundOrder.totalAmount += product.price;
+//       return foundOrder.save().then((savedOrder) => {
+//         res.send({
+//           message: 'Product added successfully!',
+//           newData: savedOrder,
+//         });
+//       });
+//     })
+
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// };
 
 module.exports.getUserOrders = (req, res) => {
   let userId = req.user.id;
