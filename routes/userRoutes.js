@@ -11,19 +11,16 @@ const auth = require('../auth');
 // user methods(endpoint, controller modules)
 router.post('/register', userController.register);
 router.post('/login', userController.login);
-router.get(
-  '/profile',
-  auth.verify,
-  auth.verifyIsOrdinaryUser,
-  userController.getUserDetails
-);
+router.get('/profile', auth.verify, userController.getUserDetails);
 // update user details
-router.put(
-  '/profile/update',
-  auth.verify,
-  auth.verifyIsOrdinaryUser,
-  userController.updateUserDetails
-);
+router.patch('/profile/update', auth.verify);
+
+// router.put(
+//   '/profile/update',
+//   auth.verify,
+//   auth.verifyIsOrdinaryUser,
+//   userController.updateUserDetails
+// );
 router.get(
   '/users',
   auth.verify,

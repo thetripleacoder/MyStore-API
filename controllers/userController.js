@@ -116,28 +116,28 @@ module.exports.getUserDetails = (req, res) => {
     });
 };
 
-module.exports.updateUserDetails = (req, res) => {
-  let firstName = req.body.firstName;
-  let lastName = req.body.lastName;
-  let address = req.body.address;
-  let mobileNo = req.body.mobileNo;
-  let updates = {};
+// module.exports.updateUserDetails = (req, res) => {
+//   let firstName = req.body.firstName;
+//   let lastName = req.body.lastName;
+//   let address = req.body.address;
+//   let mobileNo = req.body.mobileNo;
+//   let updates = {};
 
-  let userId = req.user.id;
+//   let userId = req.user.id;
 
-  let options = {
-    new: true,
-  };
+//   let options = {
+//     new: true,
+//   };
 
-  User.findByIdAndUpdate(userId, updates, options)
-    .select('firstName lastName address email mobileNo')
-    .then((updatedUser) => {
-      res.send(updatedUser);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-};
+//   User.findByIdAndUpdate(userId, updates, options)
+//     .select('firstName lastName address email mobileNo')
+//     .then((updatedUser) => {
+//       res.send(updatedUser);
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// };
 
 module.exports.getAllUsers = (req, res) => {
   User.find({})
