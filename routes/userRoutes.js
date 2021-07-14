@@ -23,11 +23,5 @@ router.put(
   auth.verifyIsAdmin,
   userController.setUserAsAdmin
 );
-router.get(
-  '/user/orders',
-  auth.verify,
-  auth.verifyIsOrdinaryUser,
-  userController.getUserOrders
-);
 
 module.exports = router;

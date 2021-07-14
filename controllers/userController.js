@@ -127,18 +127,3 @@ module.exports.setUserAsAdmin = (req, res) => {
       res.send(err);
     });
 };
-
-module.exports.getUserOrders = (req, res) => {
-  let userId = req.user.id;
-
-  User.findOne({ _id: userId })
-    .then((foundUser) => {
-      res.send({
-        Message: 'Here are your orders!',
-        Orders: foundUser.orders,
-      });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-};
