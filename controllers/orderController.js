@@ -9,22 +9,17 @@ module.exports.createOrder = (req, res) => {
   let newOrder = new Order({
     buyer: userId,
   });
-  let orderId = newOrder.id;
-
-  Order.findOne({ _id: orderId })
-    .then((foundOrder) => {
-      foundOrder.products.push(productId);
-      return foundOrder
-        .save()
-        .then((savedOrder) => {
-          res.send({ message: 'Order succesful!', newData: savedOrder });
-        })
-        .catch((err) => {
-          res.send({ message: 'All fields are required!' });
-        });
+  newOrder.products.push(productId);
+  return newOrder
+    .save()
+    .then((savedOrder) => {
+      res.send({
+        message: 'Order created successfully!',
+        newData: savedOrder,
+      });
     })
     .catch((err) => {
-      res.send(err);
+      res.send({ message: 'All fields are required!' });
     });
 };
 module.exports.getUserOrders = (req, res) => {
@@ -32,7 +27,7 @@ module.exports.getUserOrders = (req, res) => {
   Order.find({ buyer: userId })
 
     .then((result) => {
-      res.send({ data: result });
+      res.send({ message: 'List of user orders', data: result });
     })
     .catch((err) => {
       res.send(err);
@@ -42,7 +37,7 @@ module.exports.getUserOrders = (req, res) => {
 module.exports.getAllOrders = (req, res) => {
   Order.find({})
     .then((result) => {
-      res.send({ data: result });
+      res.send({ message: 'List of all orders', data: result });
     })
     .catch((err) => {
       res.send(err);
@@ -64,7 +59,7 @@ module.exports.getUserSpecificOrder = (req, res) => {
     .populate('product', { _id: 0, name: 1, description: 1, price: 1 })
     .then((result) => {
       if (result.length > 0) {
-        res.send({ data: result });
+        res.send({ message: 'Order Information', data: result });
       } else {
         res.send({ message: 'No order found!' });
       }
@@ -81,7 +76,7 @@ module.exports.getSpecificOrder = (req, res) => {
     .populate('product')
     .then((result) => {
       if (result.length > 0) {
-        res.send({ data: result });
+        res.send({ message: 'Order Information', data: result });
       } else {
         res.send({ message: 'No order found!' });
       }
