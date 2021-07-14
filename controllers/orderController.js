@@ -13,11 +13,11 @@ module.exports.createOrder = (req, res) => {
 
   Order.findOne({ _id: orderId })
     .then((foundOrder) => {
-      newOrder.products.push(productId);
+      foundOrder.products.push(productId);
       return newOrder
         .save()
         .then((savedOrder) => {
-          res.send({ newData: savedOrder });
+          res.send({ message: 'Order succesful!', newData: savedOrder });
         })
         .catch((err) => {
           res.send({ message: 'All fields are required!' });
