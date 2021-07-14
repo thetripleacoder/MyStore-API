@@ -7,8 +7,9 @@ module.exports.createOrder = (req, res) => {
   let productId = req.body;
   let newOrder = new Order({
     buyer: userId,
+    products: { productId },
   });
-  newOrder.products.push(productId);
+
   return newOrder
     .save()
     .then((savedOrder) => {
