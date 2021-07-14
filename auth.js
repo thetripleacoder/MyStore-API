@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 
 // secret
-const secretKey = 'BuyNowNotLaterNotTomorrow';
+const secretKey = process.env.SECRET_KEY;
 
 module.exports.createAccessToken = (user) => {
   const data = {
