@@ -49,6 +49,7 @@ module.exports.addProduct = (req, res) => {
         .then((foundProduct) => {
           let price = foundProduct.price;
           foundOrder.totalAmount += price;
+          foundOrder.save();
         })
         .catch((err) => {
           res.send(err);
