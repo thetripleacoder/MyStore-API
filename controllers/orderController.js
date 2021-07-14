@@ -5,19 +5,15 @@ const Product = require('../models/productModel');
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
   let productId = req.body.productId;
-  let quantity = req.body.quantity;
 
   let newOrder = new Order({
     buyer: userId,
-    product: productId,
   });
+  let orderId = newOrder.id;
 
-  Product.findOne({ _id: productId })
-    .then((foundProduct) => {
-      let price = foundProduct.price;
-      newOrder.quantity = quantity;
-      newOrder.totalAmount = quantity * price;
-
+  Order.findOne({ _id: orderId })
+    .then((foundOrder) => {
+      newOrder.products.push(productId);
       return newOrder
         .save()
         .then((savedOrder) => {
