@@ -102,7 +102,12 @@ module.exports.getUserSpecificOrder = (req, res) => {
       email: 1,
       mobileNo: 1,
     })
-    .populate('productId', { _id: 0, name: 1, description: 1, price: 1 })
+    .populate('products.productId', {
+      _id: 0,
+      name: 1,
+      description: 1,
+      price: 1,
+    })
     .then((result) => {
       if (result.length > 0) {
         res.send({ message: 'Order Information', data: result });
@@ -119,7 +124,7 @@ module.exports.getSpecificOrder = (req, res) => {
   let orderId = req.params.orderId;
   Order.find({ _id: orderId })
     .populate('buyer')
-    .populate('productId')
+    .populate('products.productId')
     .then((result) => {
       if (result.length > 0) {
         res.send({ message: 'Order Information', data: result });
