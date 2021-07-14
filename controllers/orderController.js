@@ -11,8 +11,8 @@ module.exports.createOrder = (req, res) => {
   });
   Order.findOne({ _id: newOrder.id })
     .then((foundOrder) => {
-      newOrder.products.push(productId);
-      return newOrder
+      foundOrder.products.push(productId);
+      return foundOrder
         .save()
         .then((savedOrder) => {
           res.send({
