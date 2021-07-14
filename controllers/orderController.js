@@ -15,10 +15,11 @@ module.exports.createOrder = (req, res) => {
     ],
   });
 
-  Product.findOne({ _id: productId })
+  Product.find({ _id: productId })
     .then((foundProduct) => {
       let price = foundProduct.price;
-      newOrder.totalAmount.push(price);
+      newOrder.totalAmount = price;
+
       return newOrder
         .save()
         .then((savedOrder) => {
