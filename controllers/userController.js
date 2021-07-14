@@ -16,50 +16,62 @@ module.exports.register = (req, res) => {
   let password = req.body.password;
   let mobileNo = req.body.mobileNo;
 
-  if (
-    firstName != '' &&
-    lastName != '' &&
-    address != '' &&
-    email != '' &&
-    password != '' &&
-    mobileNo != '' &&
-    firstName != null &&
-    lastName != null &&
-    address != null &&
-    email != null &&
-    password != null &&
-    mobileNo != null &&
-    firstName != undefined &&
-    lastName != undefined &&
-    address != undefined &&
-    email != undefined &&
-    password != undefined &&
-    mobileNo != undefined
-  ) {
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+  User.find({ email: email })
+    .then((foundUser) => {
+      if (foundUser) {
+        res.send({
+          message: 'Email is already taken!',
+        });
+      } else {
+        if (
+          firstName != '' &&
+          lastName != '' &&
+          address != '' &&
+          email != '' &&
+          password != '' &&
+          mobileNo != '' &&
+          firstName != null &&
+          lastName != null &&
+          address != null &&
+          email != null &&
+          password != null &&
+          mobileNo != null &&
+          firstName != undefined &&
+          lastName != undefined &&
+          address != undefined &&
+          email != undefined &&
+          password != undefined &&
+          mobileNo != undefined
+        ) {
+          const hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
-    let newUser = new User({
-      firstName: firstName,
-      lastName: lastName,
-      address: address,
-      email: email,
-      password: hashedPassword,
-      mobileNo: mobileNo,
-    });
+          let newUser = new User({
+            firstName: firstName,
+            lastName: lastName,
+            address: address,
+            email: email,
+            password: hashedPassword,
+            mobileNo: mobileNo,
+          });
 
-    newUser
-      .save()
-      .then((user) => {
-        res.send(user);
-      })
-      .catch((err) => {
-        res.send(err);
-      });
-  } else {
-    res.send({
-      message: 'All fields are required!',
+          newUser
+            .save()
+            .then((user) => {
+              res.send(user);
+            })
+            .catch((err) => {
+              res.send(err);
+            });
+        } else {
+          res.send({
+            message: 'All fields are required!',
+          });
+        }
+      }
+    })
+    .catch((err) => {
+      res.send(err);
     });
-  }
 };
 
 module.exports.login = (req, res) => {
@@ -95,7 +107,7 @@ module.exports.login = (req, res) => {
 module.exports.getUserDetails = (req, res) => {
   let userId = req.user.id;
   User.find({ _id: userId })
-    .select('firstName lastName address email mobileNo')
+    .select('firstName lastName address email mobileNo -_id')
     .then((foundUser) => {
       res.send({ data: foundUser });
     })
@@ -109,45 +121,22 @@ module.exports.updateUserDetails = (req, res) => {
   let lastName = req.body.lastName;
   let address = req.body.address;
   let mobileNo = req.body.mobileNo;
+  let updates = {};
 
-  if (
-    firstName != '' &&
-    lastName != '' &&
-    address != '' &&
-    mobileNo != '' &&
-    firstName != null &&
-    lastName != null &&
-    address != null &&
-    mobileNo != null &&
-    firstName != undefined &&
-    lastName != undefined &&
-    address != undefined &&
-    mobileNo != undefined
-  ) {
-    let userId = req.user.id;
-    let updates = {
-      firstName: firstName,
-      lastName: lastName,
-      address: address,
-      mobileNo: mobileNo,
-    };
-    let options = {
-      new: true,
-    };
+  let userId = req.user.id;
 
-    User.findByIdAndUpdate(userId, updates, options)
-      .select('firstName lastName address email mobileNo')
-      .then((updatedUser) => {
-        res.send(updatedUser);
-      })
-      .catch((err) => {
-        res.send(err);
-      });
-  } else {
-    res.send({
-      message: 'All fields are required!',
+  let options = {
+    new: true,
+  };
+
+  User.findByIdAndUpdate(userId, updates, options)
+    .select('firstName lastName address email mobileNo')
+    .then((updatedUser) => {
+      res.send(updatedUser);
+    })
+    .catch((err) => {
+      res.send(err);
     });
-  }
 };
 
 module.exports.getAllUsers = (req, res) => {
