@@ -144,7 +144,7 @@ module.exports.updateUserDetails = (req, res) => {
         res.send(err);
       });
   } else {
-    response.send({
+    res.send({
       message: 'All fields are required!',
     });
   }
