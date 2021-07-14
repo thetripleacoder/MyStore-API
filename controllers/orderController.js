@@ -9,17 +9,23 @@ module.exports.createOrder = (req, res) => {
   let newOrder = new Order({
     buyer: userId,
   });
-  newOrder.products.push(productId);
-  return newOrder
-    .save()
-    .then((savedOrder) => {
-      res.send({
-        message: 'Order created successfully!',
-        newData: savedOrder,
-      });
+  Product.findOne({ _id: productId })
+    .then((foundProduct) => {
+      newOrder.products.push(productId);
+      return newOrder
+        .save()
+        .then((savedOrder) => {
+          res.send({
+            message: 'Order created successfully!',
+            newData: savedOrder,
+          });
+        })
+        .catch((err) => {
+          res.send({ message: 'All fields are required!' });
+        });
     })
     .catch((err) => {
-      res.send({ message: 'All fields are required!' });
+      res.send(err);
     });
 };
 module.exports.getUserOrders = (req, res) => {
