@@ -5,13 +5,11 @@ const Order = require('../models/orderModel');
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
   let productId = req.body;
-  let products = [];
-  products.push(productId);
+
   let newOrder = new Order({
     buyer: userId,
-    products: products,
   });
-
+  newOrder.products.push(productId);
   return newOrder
     .save()
     .then((savedOrder) => {

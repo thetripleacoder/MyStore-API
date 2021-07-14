@@ -19,9 +19,16 @@ const orderSchema = new mongoose.Schema({
   products: [
     {
       productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: [true, 'Product Id is required'],
+        type: String,
+        required: [true, 'Course ID is required'],
+      },
+      addedOn: {
+        type: date,
+        default: date.now,
+      },
+      status: {
+        type: String,
+        default: 'ordered',
       },
     },
   ],
