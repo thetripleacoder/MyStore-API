@@ -39,10 +39,10 @@ module.exports.createOrder = (req, res) => {
 module.exports.addProduct = (req, res) => {
   let userId = req.user.id;
   let orderId = req.params.orderId;
-  let productId = req.body;
+  let productId = req.body.productId;
   Order.findOne({ buyer: userId, _id: orderId })
     .then((foundOrder) => {
-      foundOrder.products.push(productId);
+      foundOrder.products.push({ productId: productId });
 
       Product.findOne({ _id: productId }).then((foundPrice) => {
         let price = foundProduct.price;
