@@ -16,7 +16,7 @@ module.exports.register = (req, res) => {
   let password = req.body.password;
   let mobileNo = req.body.mobileNo;
 
-  User.find({ email: email })
+  User.findOne({ email: email })
     .then((foundUser) => {
       if (foundUser) {
         res.send({
