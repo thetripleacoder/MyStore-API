@@ -105,16 +105,11 @@ module.exports.getUserDetails = (req, res) => {
 };
 
 module.exports.updateUserDetails = (req, res) => {
-  let userId = req.user.id;
-  let updates = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    address: req.body.address,
-    mobileNo: req.body.mobileNo,
-  };
-  let options = {
-    new: true,
-  };
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+  let address = req.body.address;
+  let mobileNo = req.body.mobileNo;
+
   if (
     firstName != '' &&
     lastName != '' &&
@@ -129,6 +124,17 @@ module.exports.updateUserDetails = (req, res) => {
     address != undefined &&
     mobileNo != undefined
   ) {
+    let userId = req.user.id;
+    let updates = {
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      mobileNo: mobileNo,
+    };
+    let options = {
+      new: true,
+    };
+
     User.findByIdAndUpdate(userId, updates, options)
       .select('firstName lastName address mobileNo')
       .then((updatedUser) => {
