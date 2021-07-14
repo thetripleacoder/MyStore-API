@@ -31,5 +31,11 @@ router.put(
   auth.verifyIsAdmin,
   productController.archiveProduct
 );
+router.get(
+  '/products/archived/admin',
+  auth.verify.apply,
+  auth.verifyIsAdmin,
+  productController.getAllArchiveProducts
+);
 
 module.exports = router;

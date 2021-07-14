@@ -91,3 +91,13 @@ module.exports.archiveProduct = (req, res) => {
       res.send(err);
     });
 };
+
+module.exports.getAllArchiveProducts = (req, res) => {
+  Product.find({ isActive: false })
+    .then((result) => {
+      res.send({ data: result });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
