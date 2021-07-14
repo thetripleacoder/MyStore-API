@@ -77,7 +77,7 @@ module.exports.archiveProduct = (req, res) => {
           .save()
           .then((archivedProduct) => {
             res.send({
-              Message: 'Product archived successfully!',
+              message: 'Product archived successfully!',
               archivedData: archivedProduct,
             });
           })
@@ -85,7 +85,7 @@ module.exports.archiveProduct = (req, res) => {
             res.send(err);
           });
       } else {
-        res.send({ Message: 'Product is already archived!' });
+        res.send({ message: 'Product is already archived!' });
       }
     })
     .catch((err) => {
@@ -96,7 +96,7 @@ module.exports.archiveProduct = (req, res) => {
 module.exports.getAllArchiveProducts = (req, res) => {
   Product.find({ isActive: false })
     .then((result) => {
-      res.send({ data: result });
+      res.send({ message: 'List of archived products', data: result });
     })
     .catch((err) => {
       res.send(err);
