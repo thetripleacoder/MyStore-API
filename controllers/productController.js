@@ -14,7 +14,10 @@ module.exports.createProduct = (req, res) => {
   return newProduct
     .save()
     .then((savedProduct) => {
-      res.send({ newData: savedProduct });
+      res.send({
+        message: 'Product created successfully!',
+        newData: savedProduct,
+      });
     })
     .catch((err) => {
       res.send({ message: 'All fields are required!' });
@@ -24,7 +27,7 @@ module.exports.createProduct = (req, res) => {
 module.exports.getAllProducts = (req, res) => {
   Product.find({ isActive: true })
     .then((result) => {
-      res.send({ data: result });
+      res.send({ message: 'List of all active products', data: result });
     })
     .catch((err) => {
       res.send(err);
@@ -36,7 +39,7 @@ module.exports.getSpecificProduct = (req, res) => {
   Product.find({ _id: productId })
     .then((result) => {
       if (result.length > 0) {
-        res.send({ data: result });
+        res.send({ message: 'Product Information', data: result });
       } else {
         res.send({ message: 'No product found!' });
       }
@@ -48,18 +51,16 @@ module.exports.getSpecificProduct = (req, res) => {
 
 module.exports.updateProduct = (req, res) => {
   let productId = req.params.productId;
-  let updates = {
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-  };
   let options = {
     new: true,
   };
 
-  Product.findByIdAndUpdate({ _id: productId }, updates, options)
+  Product.findByIdAndUpdate(productId, req.body, options)
     .then((updatedProduct) => {
-      res.send(updatedProduct);
+      res.send({
+        message: 'Product updated successfully!',
+        data: updatedProduct,
+      });
     })
     .catch((err) => {
       res.send(err);
