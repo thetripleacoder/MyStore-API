@@ -12,11 +12,25 @@ const auth = require('../auth');
 router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.get(
+  '/profile',
+  auth.verify,
+  auth.verifyIsOrdinaryUser,
+  userController.getUserDetails
+);
+// update user details
+router.put(
+  '/profile/update',
+  auth.verify,
+  auth.verifyIsOrdinaryUser,
+  userController.updateUserDetails
+);
+router.get(
   '/users',
   auth.verify,
   auth.verifyIsAdmin,
   userController.getAllUsers
 );
+
 router.put(
   '/admin/user_access/:userId',
   auth.verify,

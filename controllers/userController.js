@@ -92,6 +92,37 @@ module.exports.login = (req, res) => {
     });
 };
 
+module.exports.getUserDetails = (req, res) => {
+  let userId = req.user.id;
+  User.find({ _id: userId })
+    .then((foundUser) => {
+      res.send({ data: foundUser });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+module.exports.updateUserDetails = (req, res) => {
+  let updates = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    address: req.body.address,
+    mobileNo: req.body.mobileNo,
+  };
+  let options = {
+    new: true,
+  };
+
+  return User.findByIdAndUpdate(req.user.id, updates, options)
+    .then((updatedUser) => {
+      res.send(updatedUser);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
 module.exports.getAllUsers = (req, res) => {
   User.find({})
     .then((result) => {
