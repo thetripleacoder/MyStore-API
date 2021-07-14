@@ -5,16 +5,16 @@ const Order = require('../models/orderModel');
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
   let productId = req.body.productId;
-  let quantity = req.body.quantity;
+  let totalAmount = productId.price;
 
   let newOrder = new Order({
     buyer: userId,
     products: [
       {
         product: productId,
-        quantity: quantity,
       },
     ],
+    totalAmount: totalAmount,
   });
 
   return newOrder
@@ -29,6 +29,28 @@ module.exports.createOrder = (req, res) => {
       res.send({ message: 'All fields are required!' });
     });
 };
+
+module.exports.addProduct = (req, res) => {
+  let userId = req.user.id;
+  let orderId = req.params.orderId;
+  let product = req.body.productId;
+  Order.find({ buyer: userId, _id: orderId })
+    .then((foundOrder) => {
+      foundOrder.products.push(product);
+      foundOrder.totalAmount += product.price;
+      return foundOrder.save().then((savedOrder) => {
+        res.send({
+          message: 'Product added successfully!',
+          newData: savedOrder,
+        });
+      });
+    })
+
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
 module.exports.getUserOrders = (req, res) => {
   let userId = req.user.id;
   Order.find({ buyer: userId })
