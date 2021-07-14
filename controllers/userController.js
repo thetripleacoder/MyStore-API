@@ -129,7 +129,7 @@ module.exports.updateUserDetails = (req, res) => {
     mobileNo != undefined
   ) {
     User.findByIdAndUpdate(req.user.id, updates, options)
-      .select('firstName lastName address mobileNo')
+      // .select('firstName lastName address mobileNo')
       .then((updatedUser) => {
         res.send(updatedUser);
       })
