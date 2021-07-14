@@ -8,9 +8,8 @@ module.exports.createOrder = (req, res) => {
 
   let newOrder = new Order({
     buyer: userId,
-    products: products.push(productId),
   });
-
+  newOrder.products.push(productId);
   return newOrder
     .save()
     .then((savedOrder) => {
