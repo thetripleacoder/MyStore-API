@@ -44,7 +44,7 @@ module.exports.addProduct = (req, res) => {
     .then((foundOrder) => {
       foundOrder.products.push(productId);
 
-      Product.findOne({ _id: productId }).then((foundPrice) => {
+      Product.findOne({ _id: productId }).then((foundProduct) => {
         let price = foundProduct.price;
         foundOrder.totalAmount += price;
       });
