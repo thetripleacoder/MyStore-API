@@ -13,7 +13,7 @@ router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.get('/profile', auth.verify, userController.getUserDetails);
 // update user details
-router.patch('/profile/update', auth.verify);
+router.put('/profile/update', auth.verify, userController.updateUserDetails);
 
 // router.put(
 //   '/profile/update',
