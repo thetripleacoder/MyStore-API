@@ -95,6 +95,7 @@ module.exports.login = (req, res) => {
 module.exports.getUserDetails = (req, res) => {
   let userId = req.user.id;
   User.find({ _id: userId })
+    .select('firstName lastName address mobileNo')
     .then((foundUser) => {
       res.send({ data: foundUser });
     })
@@ -113,14 +114,33 @@ module.exports.updateUserDetails = (req, res) => {
   let options = {
     new: true,
   };
-
-  return User.findByIdAndUpdate(req.user.id, updates, options)
-    .then((updatedUser) => {
-      res.send(updatedUser);
-    })
-    .catch((err) => {
-      res.send(err);
+  if (
+    firstName != '' &&
+    lastName != '' &&
+    address != '' &&
+    mobileNo != '' &&
+    firstName != null &&
+    lastName != null &&
+    address != null &&
+    mobileNo != null &&
+    firstName != undefined &&
+    lastName != undefined &&
+    address != undefined &&
+    mobileNo != undefined
+  ) {
+    return User.findByIdAndUpdate(req.user.id, updates, options)
+      .select('firstName lastName address mobileNo')
+      .then((updatedUser) => {
+        res.send(updatedUser);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  } else {
+    response.send({
+      message: 'All fields are required!',
     });
+  }
 };
 
 module.exports.getAllUsers = (req, res) => {
