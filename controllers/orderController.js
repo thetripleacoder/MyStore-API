@@ -9,10 +9,12 @@ module.exports.createOrder = (req, res) => {
 
   let newOrder = new Order({
     buyer: userId,
-    products: {
-      product: productId,
-      quantity: quantity,
-    },
+    products: [
+      {
+        product: productId,
+        quantity: quantity,
+      },
+    ],
   });
 
   return newOrder
