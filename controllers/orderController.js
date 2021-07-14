@@ -44,11 +44,15 @@ module.exports.addProduct = (req, res) => {
     .then((foundOrder) => {
       foundOrder.products.push(productId);
 
-      Product.findOne({ _id: productId }).then((foundProduct) => {
-        let price = foundProduct.price;
-        return price;
-      });
-      foundOrder.totalAmount += foundProduct;
+      Product.findOne({ _id: productId })
+        .then((foundProduct) => {
+          let price = foundProduct.price;
+          foundOrder.totalAmount += price;
+        })
+        .catch((err) => {
+          res.send(err);
+        });
+
       return foundOrder.save().then((savedOrder) => {
         res.send({
           message: 'Product added successfully!',
