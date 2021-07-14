@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema({
         required: [true, 'Course ID is required'],
       },
       addedOn: {
-        type: date,
+        type: Date,
         default: date.now,
       },
       status: {
