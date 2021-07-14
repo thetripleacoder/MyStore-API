@@ -56,8 +56,14 @@ module.exports.getAllOrders = (req, res) => {
 module.exports.getUserSpecificOrder = (req, res) => {
   let orderId = req.params.orderId;
   Order.find({ _id: orderId })
-    .populate('buyer', '-isAdmin', '-_id', '-password', '-__v')
-    .populate('product', '-isActive', '-createdOn', '-_id', '-__v')
+    .populate('buyer', {
+      firstName: 1,
+      lastName: 1,
+      address: 1,
+      email: 1,
+      mobileNo: 1,
+    })
+    .populate('product', { name: 1, description: 1, price: 1 })
     .then((result) => {
       if (result.length > 0) {
         res.send({ data: result });
