@@ -53,6 +53,23 @@ module.exports.getAllOrders = (req, res) => {
     });
 };
 
+module.exports.getUserSpecificOrder = (req, res) => {
+  let orderId = req.params.orderId;
+  Order.find({ _id: orderId })
+    .populate('buyer', '-isAdmin', '-_id', '-password', '-__v')
+    .populate('product', '-isActive', '-createdOn', '-_id', '-__v')
+    .then((result) => {
+      if (result.length > 0) {
+        res.send({ data: result });
+      } else {
+        res.send({ message: 'No order found!' });
+      }
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
 module.exports.getSpecificOrder = (req, res) => {
   let orderId = req.params.orderId;
   Order.find({ _id: orderId })

@@ -25,7 +25,7 @@ router.get(
   '/user/orders/:orderId',
   auth.verify,
   auth.verifyIsOrdinaryUser,
-  orderController.getSpecificOrder
+  orderController.getUserSpecificOrder
 );
 router.get(
   '/admin/orders',
