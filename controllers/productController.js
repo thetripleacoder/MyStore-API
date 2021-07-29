@@ -103,27 +103,30 @@ module.exports.getAllArchiveProducts = (req, res) => {
     });
 };
 
-module.exports.activateProduct  = (req, res) => {
+module.exports.activateProduct = (req, res) => {
   let productId = req.params.productId;
   Product.findOne({ _id: productId })
-  .then(result => {
-      if(result.isActive === false){
-        result.isActive = true
-        return result.save().then(activatedProduct =>{
-          return {
-            message: "Product successfully re-activated",
-            activatedData: activatedProduct
-          }
-        })
-        .catch(err => {
-            return err
-        })
+    .then((result) => {
+      if (result.isActive) {
+        result.isActive = false;
+        result
+          .save()
+          .then((activatedProduct) => {
+            res.send({
+              message: 'Product activated successfully!',
+              activatedData: activatedProduct,
+            });
+          })
+          .catch((err) => {
+            res.send(err);
+          });
       } else {
-        return {message: "Product is already active!"}
+        res.send({ message: 'Product is already activated!' });
       }
-  })
-  .catch(err => {
-    return err
-  })
-}
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
 
