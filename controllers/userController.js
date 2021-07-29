@@ -109,7 +109,7 @@ module.exports.getUserDetails = (req, res) => {
   User.find({ _id: userId })
     .select('firstName lastName address email mobileNo -_id')
     .then((foundUser) => {
-      res.send({ message: 'Profile Information', data: foundUser });
+      res.send({ message: 'Profile Information', data: {foundUser} });
     })
     .catch((err) => {
       res.send(err);
