@@ -57,7 +57,7 @@ module.exports.register = (req, res) => {
           newUser
             .save()
             .then((user) => {
-              res.send({ message: 'Registration Successful!', newData: user });
+              res.send({user});
             })
             .catch((err) => {
               res.send(err);
