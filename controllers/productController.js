@@ -25,7 +25,7 @@ module.exports.createProduct = (req, res) => {
 };
 
 module.exports.getAllProducts = (req, res) => {
-  Product.find({ isActive: true })
+  Product.find()
     .then((result) => {
       res.send({ message: 'List of all active products', data: result });
     })
