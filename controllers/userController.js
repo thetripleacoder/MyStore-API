@@ -57,7 +57,7 @@ module.exports.register = (req, res) => {
           newUser
             .save()
             .then((user) => {
-              res.send({message: "Registration Successful!", data: user});
+              res.send({message: "Registration Successful!", data: {user});
             })
             .catch((err) => {
               res.send(err);
@@ -68,7 +68,8 @@ module.exports.register = (req, res) => {
           });
         }
       }
-    })
+    }
+  })
     .catch((err) => {
       res.send(err);
     });
