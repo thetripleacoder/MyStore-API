@@ -102,3 +102,26 @@ module.exports.getAllArchiveProducts = (req, res) => {
       res.send(err);
     });
 };
+
+const activateCourse = (courseId) => {
+  return Course.findOne({_id:courseId}).then(result => {
+      if(result.isActive === false){
+        result.isActive = true
+        return result.save().then(activatedCourse =>{
+          return {
+            message: "Course successfully re-activated",
+            activatedData: activatedCourse
+          }
+        })
+        .catch(err => {
+            return err
+        })
+      } else {
+        return {message: "Course is already active!"}
+      }
+  })
+  .catch(err => {
+    return err
+  })
+}
+

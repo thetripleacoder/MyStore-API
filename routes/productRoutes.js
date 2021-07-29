@@ -37,5 +37,11 @@ router.get(
   auth.verifyIsAdmin,
   productController.getAllArchiveProducts
 );
+router.put(
+  '/products/activate/:productId',
+  auth.verify,
+  auth.verifyIsAdmin,
+  productController.activateProduct
+);
 
 module.exports = router;
