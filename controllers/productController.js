@@ -107,7 +107,7 @@ module.exports.activateProduct = (req, res) => {
   let productId = req.params.productId;
   Product.findOne({ _id: productId })
     .then((result) => {
-      if (result.isActive) {
+      if (result.isActive === false) {
         result.isActive = true;
         result
           .save()
