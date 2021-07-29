@@ -103,21 +103,21 @@ module.exports.getAllArchiveProducts = (req, res) => {
     });
 };
 
-const activateCourse = (courseId) => {
-  return Course.findOne({_id:courseId}).then(result => {
+const activateProduct = (productId) => {
+  return Product.findOne({_id:productId}).then(result => {
       if(result.isActive === false){
         result.isActive = true
-        return result.save().then(activatedCourse =>{
+        return result.save().then(activatedProduct =>{
           return {
-            message: "Course successfully re-activated",
-            activatedData: activatedCourse
+            message: "Product successfully re-activated",
+            activatedData: activatedProduct
           }
         })
         .catch(err => {
             return err
         })
       } else {
-        return {message: "Course is already active!"}
+        return {message: "Product is already active!"}
       }
   })
   .catch(err => {
