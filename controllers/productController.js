@@ -27,7 +27,7 @@ module.exports.createProduct = (req, res) => {
 module.exports.getAllProducts = (req, res) => {
   Product.find()
     .then((result) => {
-      res.send({ message: 'List of all active products', data: result });
+      res.send({ message: 'List of all products', data: result });
     })
     .catch((err) => {
       res.send(err);
@@ -103,13 +103,15 @@ module.exports.getAllArchiveProducts = (req, res) => {
     });
 };
 
-const activateProduct = (productId) => {
-  return Product.findOne({_id:productId}).then(result => {
+module.exports.activateProduct  = (req, res) => {
+  let productId = req.params.productId;
+  Product.findOne({ _id: productId })
+  .then(result => {
       if(result.isActive === false){
         result.isActive = true
         return result.save().then(activatedProduct =>{
           return {
-            message: "Products successfully re-activated",
+            message: "Product successfully re-activated",
             activatedData: activatedProduct
           }
         })
