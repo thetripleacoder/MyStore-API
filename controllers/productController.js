@@ -109,7 +109,7 @@ const activateProduct = (productId) => {
         result.isActive = true
         return result.save().then(activatedProduct =>{
           return {
-            message: "Product successfully re-activated",
+            message: "Products successfully re-activated",
             activatedData: activatedProduct
           }
         })
