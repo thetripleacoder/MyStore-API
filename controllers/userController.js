@@ -57,7 +57,7 @@ module.exports.register = (req, res) => {
           newUser
             .save()
             .then((user) => {
-              res.send({message: "Registration Successful!", data: {user}});
+              res.send({message: "Registration Successful!", user});
             })
             .catch((err) => {
               res.send(err);
@@ -109,7 +109,7 @@ module.exports.getUserDetails = (req, res) => {
   User.find({ _id: userId })
     .select('firstName lastName address email mobileNo -_id')
     .then((foundUser) => {
-      res.send({ message: 'Profile Information', data: {foundUser} });
+      res.send({ message: 'Profile Information', foundUser);
     })
     .catch((err) => {
       res.send(err);
