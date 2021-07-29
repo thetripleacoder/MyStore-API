@@ -14,10 +14,7 @@ module.exports.createProduct = (req, res) => {
   return newProduct
     .save()
     .then((savedProduct) => {
-      res.send({
-        message: 'Product created successfully!',
-        newData: savedProduct,
-      });
+      res.send(savedProduct);
     })
     .catch((err) => {
       res.send({ message: 'All fields are required!' });
