@@ -106,8 +106,7 @@ module.exports.login = (req, res) => {
 
 module.exports.getUserDetails = (req, res) => {
   let userId = req.user.id;
-  User.find({ _id: userId })
-    .select('firstName lastName address email mobileNo -_id')
+  User.findById(userId)
     .then((foundUser) => {
       res.send(foundUser);
     })
