@@ -33,7 +33,7 @@ module.exports.getAllProducts = (req, res) => {
 
 module.exports.getSpecificProduct = (req, res) => {
   let productId = req.params.productId;
-  Product.find({_id.productId})
+  Product.find({_id:productId})
     .then((result) => {
       if (result.length > 0) {
         res.send({ message: 'Product Information', data: result });
