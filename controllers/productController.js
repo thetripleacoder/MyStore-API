@@ -35,7 +35,7 @@ module.exports.getSpecificProduct = (req, res) => {
   let productId = req.params.productId;
   Product.findOne({_id:productId})
     .then((result) => {
-      if (result.length > 0) {
+      if (result) {
         res.send({ message: 'Product Information', data: result });
       } else {
         res.send({ message: 'No product found!' });
