@@ -1,11 +1,13 @@
 const Product = require('../models/productModel');
 
 module.exports.createProduct = (req, res) => {
+  let picture = req.body.picture;
   let name = req.body.name;
   let description = req.body.description;
   let price = req.body.price;
 
   let newProduct = new Product({
+    picture: picture
     name: name,
     description: description,
     price: price,
