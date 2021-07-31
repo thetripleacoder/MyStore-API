@@ -56,10 +56,7 @@ module.exports.updateProduct = (req, res) => {
 
   Product.findByIdAndUpdate(productId, req.body, options)
     .then((updatedProduct) => {
-      res.send({
-        message: 'Product updated successfully!',
-        data: updatedProduct,
-      });
+      res.send(updatedProduct);
     })
     .catch((err) => {
       res.send(err);
