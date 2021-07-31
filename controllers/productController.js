@@ -7,7 +7,7 @@ module.exports.createProduct = (req, res) => {
   let price = req.body.price;
 
   let newProduct = new Product({
-    picture: picture
+    picture: picture,
     name: name,
     description: description,
     price: price,
