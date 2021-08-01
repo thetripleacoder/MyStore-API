@@ -17,8 +17,7 @@ const orderSchema = new mongoose.Schema({
     ref: 'User',
   },
   products:{
-    type: Map,
-    of: String
+    type: Array,
   },
 });
 
