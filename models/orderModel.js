@@ -17,7 +17,7 @@ const orderSchema = new mongoose.Schema({
     ref: 'User',
   },
   products: {
-    type: Schema.Types.Mixed,
+    type: Array,
   },
 });
 
