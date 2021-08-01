@@ -16,7 +16,10 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
-  products:[Schema.Types.Mixed],
+  products:{
+    type: Map,
+    of: String
+  },
 });
 
 module.exports = mongoose.model('Order', orderSchema);
