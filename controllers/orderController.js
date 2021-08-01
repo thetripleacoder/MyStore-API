@@ -8,7 +8,8 @@ module.exports.createOrder = (req, res) => {
 
   let newOrder = new Order({
     buyer: userId,
-    products: products,
+    totalAmount: totalAmount,
+    // products: products,
   });
 
   Product.findOne({ _id: productId })

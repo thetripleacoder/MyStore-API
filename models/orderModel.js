@@ -16,9 +16,9 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
-  products: {
-    type: Array,
-  },
+  // products: {
+  //   type: Array,
+  // },
 });
 
 module.exports = mongoose.model('Order', orderSchema);
