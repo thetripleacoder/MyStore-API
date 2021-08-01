@@ -4,7 +4,6 @@ const Product = require('../models/productModel');
 
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
-  let productId = req.body.productId;
   let totalAmount = req.body.totalAmount;
   let products= req.body.products;
 
@@ -14,21 +13,13 @@ module.exports.createOrder = (req, res) => {
     products: products,
   });
 
-  Product.findOne({ _id: productId })
-    .then((foundProduct) => {
-      let price = foundProduct.price;
-      newOrder.totalAmount = price;
-      return newOrder
-        .save()
-        .then((savedOrder) => {
-          res.send(savedOrder);
-        })
-        .catch((err) => {
-          res.send({ message: 'All fields are required!' });
-        });
+     return newOrder
+    .save()
+    .then((savedOrder) => {
+      res.send(savedOrder);
     })
     .catch((err) => {
-      res.send(err);
+      res.send({ message: 'All fields are required!' });
     });
 };
 
