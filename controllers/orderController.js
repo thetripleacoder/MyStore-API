@@ -21,10 +21,7 @@ module.exports.createOrder = (req, res) => {
       return newOrder
         .save()
         .then((savedOrder) => {
-          res.send({
-            message: 'Order created successfully!',
-            newData: savedOrder,
-          });
+          res.send(savedOrder);
         })
         .catch((err) => {
           res.send({ message: 'All fields are required!' });
