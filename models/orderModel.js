@@ -16,18 +16,9 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
-  products: [
-    {
-      addedOn: {
-        type: Date,
-        default: new Date(),
-      },
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-      },
-    },
-  ],
+  products: [{
+    type: String
+  }]
 });
 
 module.exports = mongoose.model('Order', orderSchema);
