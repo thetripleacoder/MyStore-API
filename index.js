@@ -22,7 +22,7 @@ db.on('error', console.error.bind(console, 'Connection error!'));
 db.on('open', () => console.log('We are connected to the database!'));
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Buy, Juan! Take, Juan! store!');
+  res.send('Welcome to MyStore!');
 });
 
 app.use('/api', userRoutes);

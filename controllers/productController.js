@@ -130,8 +130,8 @@ module.exports.deleteProduct = (req, res) => {
   let productId = req.params.productId;
   Product.findByIdAndDelete(productId)
   .then(result => {
-    res.send {message: 'Product deleted successfully!',
-              deletedData: result}
+    res.send ({message: 'Product deleted successfully!',
+              deletedData: result})
   }).catch(err => {
     res.send err;
   })
