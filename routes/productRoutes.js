@@ -43,5 +43,11 @@ router.put(
   auth.verifyIsAdmin,
   productController.activateProduct
 );
+router.delete(
+  '/products/delete/:productId',
+  auth.verify,
+  auth.verifyIsAdmin,
+  productController.deleteProduct
+);
 
 module.exports = router;

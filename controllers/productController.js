@@ -126,3 +126,12 @@ module.exports.activateProduct = (req, res) => {
 };
 
 
+module.exports.deleteProduct = (req, res) => {
+  let productId = req.params.productId;
+  Product.findByIdAndDelete(productId).then(result => {
+    return {message: "Product deleted successfully!"}
+  }).catch(err => {
+    return err;
+  })
+}
+
