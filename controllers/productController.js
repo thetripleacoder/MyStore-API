@@ -128,10 +128,12 @@ module.exports.activateProduct = (req, res) => {
 
 module.exports.deleteProduct = (req, res) => {
   let productId = req.params.productId;
-  Product.findByIdAndDelete(productId).then(result => {
-    return {message: "Product deleted successfully!"}
+  Product.findByIdAndDelete(productId)
+  .then(result => {
+    res.send {message: 'Product deleted successfully!',
+              deletedData: result}
   }).catch(err => {
-    return err;
+    res.send err;
   })
 }
 
