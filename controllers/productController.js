@@ -133,7 +133,7 @@ module.exports.deleteProduct = (req, res) => {
     res.send ({message: 'Product deleted successfully!',
               deletedData: result})
   }).catch(err => {
-    res.send err;
+    res.send (err);
   })
 }
 
