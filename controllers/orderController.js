@@ -5,6 +5,7 @@ const Product = require('../models/productModel');
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
   let totalAmount = req.body.totalAmount;
+  let shippingFee = req.body.shippingFee;
   let products = req.body.products;
 
   let newOrder = new Order({
