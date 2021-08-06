@@ -8,6 +8,9 @@ const orderSchema = new mongoose.Schema({
   totalAmount: {
     type: Number,
   },
+  shippingFee: {
+    type: Number,
+  },
   purchasedOn: {
     type: Date,
     default: new Date(),
@@ -16,7 +19,7 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
-  products:{
+  products: {
     type: Array,
   },
 });
