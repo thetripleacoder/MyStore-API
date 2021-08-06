@@ -5,15 +5,16 @@ const Product = require('../models/productModel');
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
   let totalAmount = req.body.totalAmount;
-  let products= req.body.products;
+  let products = req.body.products;
 
   let newOrder = new Order({
     buyer: userId,
     totalAmount: totalAmount,
+    shippingFee: shippingFee,
     products: products,
   });
 
-     return newOrder
+  return newOrder
     .save()
     .then((savedOrder) => {
       res.send(savedOrder);
