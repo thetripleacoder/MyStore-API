@@ -45,5 +45,11 @@ router.get(
   auth.verifyIsAdmin,
   orderController.getSpecificOrder
 );
+router.put(
+  '/admin/orders/:orderId',
+  auth.verify,
+  auth.verifyIsAdmin,
+  orderController.completeOrder
+);
 
 module.exports = router;

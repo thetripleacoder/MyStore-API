@@ -123,3 +123,29 @@ module.exports.getSpecificOrder = (req, res) => {
       res.send(err);
     });
 };
+
+module.exports.completeOrder = (req, res) => {
+  let orderId = req.params.orderId;
+  Order.findOne({ _id: orderId })
+    .then((result) => {
+      if (result.isPending) {
+        result.isPending = false;
+        result
+          .save()
+          .then((completedOrder) => {
+            res.send({
+              message: 'Order completed successfully!',
+              completedOrder: completedOrder,
+            });
+          })
+          .catch((err) => {
+            res.send(err);
+          });
+      } else {
+        res.send({ message: 'Order is already completed!' });
+      }
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};

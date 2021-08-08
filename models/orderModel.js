@@ -5,15 +5,19 @@ const orderSchema = new mongoose.Schema({
   //   type: Number,
   //   required: [true, 'Quantity is required'],
   // },
+  isPending: {
+    type: Boolean,
+    default: true,
+  },
+  purchasedOn: {
+    type: Date,
+    default: new Date(),
+  },
   totalAmount: {
     type: Number,
   },
   shippingFee: {
     type: Number,
-  },
-  purchasedOn: {
-    type: Date,
-    default: new Date(),
   },
   buyer: {
     type: mongoose.Schema.Types.ObjectId,
