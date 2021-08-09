@@ -28,7 +28,7 @@ const orderSchema = new mongoose.Schema({
         type: String,
       },
       email: {
-        type: Email,
+        type: String,
       },
       address: {
         type: String,
