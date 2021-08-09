@@ -15,36 +15,36 @@ router.post(
   auth.verifyIsOrdinaryUser,
   orderController.createOrder
 );
-router.post(
-  '/users/checkout/:orderId',
-  auth.verify,
-  auth.verifyIsOrdinaryUser,
-  orderController.addProduct
-);
+// router.post(
+//   '/users/checkout/:orderId',
+//   auth.verify,
+//   auth.verifyIsOrdinaryUser,
+//   orderController.addProduct
+// );
 router.get(
   '/user/orders',
   auth.verify,
   auth.verifyIsOrdinaryUser,
   orderController.getUserOrders
 );
-router.get(
-  '/user/orders/:orderId',
-  auth.verify,
-  auth.verifyIsOrdinaryUser,
-  orderController.getUserSpecificOrder
-);
+// router.get(
+//   '/user/orders/:orderId',
+//   auth.verify,
+//   auth.verifyIsOrdinaryUser,
+//   orderController.getUserSpecificOrder
+// );
 router.get(
   '/admin/orders',
   auth.verify,
   auth.verifyIsAdmin,
   orderController.getAllOrders
 );
-router.get(
-  '/admin/orders/:orderId',
-  auth.verify,
-  auth.verifyIsAdmin,
-  orderController.getSpecificOrder
-);
+// router.get(
+//   '/admin/orders/:orderId',
+//   auth.verify,
+//   auth.verifyIsAdmin,
+//   orderController.getSpecificOrder
+// );
 router.put(
   '/admin/orders/completed/:orderId',
   auth.verify,
