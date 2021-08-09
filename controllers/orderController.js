@@ -13,6 +13,11 @@ module.exports.createOrder = (req, res) => {
     totalAmount: totalAmount,
     shippingFee: shippingFee,
     products: products,
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    address: address,
+    mobileNo: mobileNo,
   });
 
   return newOrder

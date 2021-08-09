@@ -19,10 +19,29 @@ const orderSchema = new mongoose.Schema({
   shippingFee: {
     type: Number,
   },
-  buyer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
+  buyer: [
+    {
+      firstName: {
+        type: String,
+      },
+      lastName: {
+        type: String,
+      },
+      email: {
+        type: Email,
+      },
+      address: {
+        type: String,
+      },
+      mobileNo: {
+        type: Number,
+      },
+    },
+  ],
+  // buyer: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'User',
+  // },
   products: {
     type: Array,
   },
