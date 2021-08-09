@@ -46,13 +46,13 @@ router.get(
   orderController.getSpecificOrder
 );
 router.put(
-  '/admin/orders/:orderId',
+  '/admin/orders/completed/:orderId',
   auth.verify,
   auth.verifyIsAdmin,
   orderController.setAsCompletedOrder
 );
 router.put(
-  '/admin/orders/:orderId',
+  '/admin/orders/pending/:orderId',
   auth.verify,
   auth.verifyIsAdmin,
   orderController.setAsPendingOrder
