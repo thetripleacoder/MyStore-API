@@ -25,30 +25,28 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: [true, 'User Id is required'],
   },
-  buyer: [
-    {
-      firstName: {
-        type: String,
-        required: [true, 'First Name is required'],
-      },
-      lastName: {
-        type: String,
-        required: [true, 'Last Name is required'],
-      },
-      email: {
-        type: String,
-        required: [true, 'Email is required'],
-      },
-      address: {
-        type: String,
-        required: [true, 'Address is required'],
-      },
-      mobileNo: {
-        type: Number,
-        required: [true, 'Mobile Number is required'],
-      },
-    },
-  ],
+
+  firstName: {
+    type: String,
+    required: [true, 'First Name is required'],
+  },
+  lastName: {
+    type: String,
+    required: [true, 'Last Name is required'],
+  },
+  email: {
+    type: String,
+    required: [true, 'Email is required'],
+  },
+  address: {
+    type: String,
+    required: [true, 'Address is required'],
+  },
+  mobileNo: {
+    type: Number,
+    required: [true, 'Mobile Number is required'],
+  },
+
   // buyer: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'User',
