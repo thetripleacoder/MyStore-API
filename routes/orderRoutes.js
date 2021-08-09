@@ -49,7 +49,13 @@ router.put(
   '/admin/orders/:orderId',
   auth.verify,
   auth.verifyIsAdmin,
-  orderController.completeOrder
+  orderController.setAsCompletedOrder
+);
+router.put(
+  '/admin/orders/:orderId',
+  auth.verify,
+  auth.verifyIsAdmin,
+  orderController.setAsPendingOrder
 );
 
 module.exports = router;

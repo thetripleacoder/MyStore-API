@@ -124,7 +124,7 @@ module.exports.getSpecificOrder = (req, res) => {
     });
 };
 
-module.exports.completeOrder = (req, res) => {
+module.exports.setAsCompletedOrder = (req, res) => {
   let orderId = req.params.orderId;
   Order.findOne({ _id: orderId })
     .then((result) => {
@@ -143,6 +143,32 @@ module.exports.completeOrder = (req, res) => {
           });
       } else {
         res.send({ message: 'Order is already completed!' });
+      }
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+module.exports.setAsPendingOrder = (req, res) => {
+  let orderId = req.params.orderId;
+  Order.findOne({ _id: orderId })
+    .then((result) => {
+      if (result.isPending == false) {
+        result.isPending = true;
+        result
+          .save()
+          .then((pendingOrder) => {
+            res.send({
+              message: 'Order pending successfully!',
+              pendingOrder: pendingOrder,
+            });
+          })
+          .catch((err) => {
+            res.send(err);
+          });
+      } else {
+        res.send({ message: 'Order is already pending!' });
       }
     })
     .catch((err) => {
