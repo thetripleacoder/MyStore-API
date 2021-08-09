@@ -128,7 +128,7 @@ module.exports.setAsCompletedOrder = (req, res) => {
   let orderId = req.params.orderId;
   Order.findOne({ _id: orderId })
     .then((result) => {
-      if (result.isPending) {
+      if (result.isPending == true) {
         result.isPending = false;
         result
           .save()
