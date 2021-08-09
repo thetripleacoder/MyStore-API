@@ -1,6 +1,6 @@
 const Order = require('../models/orderModel');
 // const User = require('../models/userModel');
-const Product = require('../models/productModel');
+// const Product = require('../models/productModel');
 
 module.exports.createOrder = (req, res) => {
   let userId = req.user.id;
