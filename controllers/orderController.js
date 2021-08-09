@@ -7,6 +7,11 @@ module.exports.createOrder = (req, res) => {
   let totalAmount = req.body.totalAmount;
   let shippingFee = req.body.shippingFee;
   let products = req.body.products;
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+  let email = req.body.email;
+  let address = req.body.address;
+  let mobileNo = req.body.mobileNo;
 
   let newOrder = new Order({
     buyer: userId,
