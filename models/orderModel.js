@@ -32,7 +32,7 @@ const orderSchema = new mongoose.Schema({
         required: [true, 'Last Name is required'],
       },
       email: {
-        type: Email,
+        type: String,
         required: [true, 'Email is required'],
       },
       address: {
