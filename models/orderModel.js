@@ -43,7 +43,7 @@ const orderSchema = new mongoose.Schema({
     required: [true, 'Address is required'],
   },
   mobileNo: {
-    type: Number,
+    type: String,
     required: [true, 'Mobile Number is required'],
   },
 
