@@ -3,7 +3,7 @@ const Order = require('../models/orderModel');
 const Product = require('../models/productModel');
 
 module.exports.createOrder = (req, res) => {
-  let userId = req.user.id;
+  // let userId = req.user.id;
   let totalAmount = req.body.totalAmount;
   let shippingFee = req.body.shippingFee;
   let products = req.body.products;
@@ -14,7 +14,7 @@ module.exports.createOrder = (req, res) => {
   let mobileNo = req.body.mobileNo;
 
   let newOrder = new Order({
-    buyer: userId,
+    // buyer: userId,
     totalAmount: totalAmount,
     shippingFee: shippingFee,
     products: products,
