@@ -3,7 +3,7 @@ const Order = require('../models/orderModel');
 const Product = require('../models/productModel');
 
 module.exports.createOrder = (req, res) => {
-  // let userId = req.user.id;
+  let userId = req.user.id;
   let totalAmount = req.body.totalAmount;
   let shippingFee = req.body.shippingFee;
   let products = req.body.products;
@@ -14,17 +14,15 @@ module.exports.createOrder = (req, res) => {
   let mobileNo = req.body.mobileNo;
 
   let newOrder = new Order({
-    // buyer: userId,
     totalAmount: totalAmount,
     shippingFee: shippingFee,
     products: products,
-    buyer: {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      address: address,
-      mobileNo: mobileNo,
-    },
+    userId: userid,
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    address: address,
+    mobileNo: mobileNo,
   });
 
   return newOrder
@@ -69,7 +67,7 @@ module.exports.addProduct = (req, res) => {
 
 module.exports.getUserOrders = (req, res) => {
   let userId = req.user.id;
-  Order.find({ buyer: userId })
+  Order.find({ userId: userId })
 
     .then((result) => {
       res.send({ message: 'List of user orders', data: result });

@@ -23,6 +23,10 @@ const orderSchema = new mongoose.Schema({
   },
   buyer: [
     {
+      userId: {
+        type: String,
+        required: [true, 'User Id is required'],
+      },
       firstName: {
         type: String,
         required: [true, 'First Name is required'],
