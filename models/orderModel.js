@@ -21,12 +21,12 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Shipping Fee is required'],
   },
+  userId: {
+    type: String,
+    required: [true, 'User Id is required'],
+  },
   buyer: [
     {
-      userId: {
-        type: String,
-        required: [true, 'User Id is required'],
-      },
       firstName: {
         type: String,
         required: [true, 'First Name is required'],

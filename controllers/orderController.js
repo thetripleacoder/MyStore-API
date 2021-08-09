@@ -17,7 +17,7 @@ module.exports.createOrder = (req, res) => {
     totalAmount: totalAmount,
     shippingFee: shippingFee,
     products: products,
-    userId: userid,
+    userId: userId,
     buyer: {
       firstName: firstName,
       lastName: lastName,
@@ -37,35 +37,35 @@ module.exports.createOrder = (req, res) => {
     });
 };
 
-module.exports.addProduct = (req, res) => {
-  let userId = req.user.id;
-  let orderId = req.params.orderId;
-  let productId = req.body.productId;
-  let product = req.body;
-  Order.findOne({ buyer: userId, _id: orderId })
-    .then((foundOrder) => {
-      foundOrder.products.push(product);
+// module.exports.addProduct = (req, res) => {
+//   let userId = req.user.id;
+//   let orderId = req.params.orderId;
+//   let productId = req.body.productId;
+//   let product = req.body;
+//   Order.findOne({ buyer: userId, _id: orderId })
+//     .then((foundOrder) => {
+//       foundOrder.products.push(product);
 
-      Product.findOne({ _id: productId })
-        .then((foundProduct) => {
-          let price = foundProduct.price;
-          foundOrder.totalAmount += price;
-          return foundOrder.save().then((savedOrder) => {
-            res.send({
-              message: 'Product added successfully!',
-              newData: savedOrder,
-            });
-          });
-        })
-        .catch((err) => {
-          res.send(err);
-        });
-    })
+//       Product.findOne({ _id: productId })
+//         .then((foundProduct) => {
+//           let price = foundProduct.price;
+//           foundOrder.totalAmount += price;
+//           return foundOrder.save().then((savedOrder) => {
+//             res.send({
+//               message: 'Product added successfully!',
+//               newData: savedOrder,
+//             });
+//           });
+//         })
+//         .catch((err) => {
+//           res.send(err);
+//         });
+//     })
 
-    .catch((err) => {
-      res.send(err);
-    });
-};
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// };
 
 module.exports.getUserOrders = (req, res) => {
   let userId = req.user.id;
@@ -89,52 +89,52 @@ module.exports.getAllOrders = (req, res) => {
     });
 };
 
-module.exports.getUserSpecificOrder = (req, res) => {
-  let userId = req.user.id;
-  let orderId = req.params.orderId;
-  Order.find({ buyer: userId, _id: orderId })
-    .populate('buyer', {
-      _id: 0,
-      firstName: 1,
-      lastName: 1,
-      address: 1,
-      email: 1,
-      mobileNo: 1,
-    })
-    .populate('products.productId', {
-      _id: 0,
-      name: 1,
-      description: 1,
-      price: 1,
-    })
-    .then((result) => {
-      if (result.length > 0) {
-        res.send({ message: 'Order Information', data: result });
-      } else {
-        res.send({ message: 'No order found!' });
-      }
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-};
+// module.exports.getUserSpecificOrder = (req, res) => {
+//   let userId = req.user.id;
+//   let orderId = req.params.orderId;
+//   Order.find({ buyer: userId, _id: orderId })
+//     .populate('buyer', {
+//       _id: 0,
+//       firstName: 1,
+//       lastName: 1,
+//       address: 1,
+//       email: 1,
+//       mobileNo: 1,
+//     })
+//     .populate('products.productId', {
+//       _id: 0,
+//       name: 1,
+//       description: 1,
+//       price: 1,
+//     })
+//     .then((result) => {
+//       if (result.length > 0) {
+//         res.send({ message: 'Order Information', data: result });
+//       } else {
+//         res.send({ message: 'No order found!' });
+//       }
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// };
 
-module.exports.getSpecificOrder = (req, res) => {
-  let orderId = req.params.orderId;
-  Order.find({ _id: orderId })
-    .populate('buyer')
-    .populate('products.productId')
-    .then((result) => {
-      if (result.length > 0) {
-        res.send({ message: 'Order Information', data: result });
-      } else {
-        res.send({ message: 'No order found!' });
-      }
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-};
+// module.exports.getSpecificOrder = (req, res) => {
+//   let orderId = req.params.orderId;
+//   Order.find({ _id: orderId })
+//     .populate('buyer')
+//     .populate('products.productId')
+//     .then((result) => {
+//       if (result.length > 0) {
+//         res.send({ message: 'Order Information', data: result });
+//       } else {
+//         res.send({ message: 'No order found!' });
+//       }
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// };
 
 module.exports.setAsCompletedOrder = (req, res) => {
   let orderId = req.params.orderId;
