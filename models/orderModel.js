@@ -15,26 +15,33 @@ const orderSchema = new mongoose.Schema({
   },
   totalAmount: {
     type: Number,
+    required: [true, 'Total Amount is required'],
   },
   shippingFee: {
     type: Number,
+    required: [true, 'Shipping Fee is required'],
   },
   buyer: [
     {
       firstName: {
         type: String,
+        required: [true, 'First Name is required'],
       },
       lastName: {
         type: String,
+        required: [true, 'Last Name is required'],
       },
       email: {
-        type: String,
+        type: Email,
+        required: [true, 'Email is required'],
       },
       address: {
         type: String,
+        required: [true, 'Address is required'],
       },
       mobileNo: {
         type: Number,
+        required: [true, 'Mobile Number is required'],
       },
     },
   ],
