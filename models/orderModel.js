@@ -53,6 +53,7 @@ const orderSchema = new mongoose.Schema({
   // },
   products: {
     type: Array,
+    required: [true, 'Product(s) is required'],
   },
 });
 
