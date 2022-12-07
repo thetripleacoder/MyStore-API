@@ -1,0 +1,658 @@
+{
+	"info": {
+		"_postman_id": "fe5b9826-2ecd-4c46-8af4-58544c64856e",
+		"name": "E-Commerce API (CSP2)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16417537"
+	},
+	"item": [
+		{
+			"name": "Admin Access",
+			"item": [
+				{
+					"name": "Create product (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWRhNTdkNTM1NDcwNWUzNDk0YzY3MCIsImVtYWlsIjoicGVkcm8ucGVuZHVrb0BnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MjYzMTU5MDV9.yNtIPyywiJ5uveacM6rJrvvXJ0WFJaBfUfRMnlM_p-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Playstation 5\",\r\n    \"description\": \"5th edition of playstation gaming console\",\r\n    \"price\": 22000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cryptic-crag-81593.herokuapp.com/api/products",
+							"protocol": "https",
+							"host": [
+								"cryptic-crag-81593",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWRhNTdkNTM1NDcwNWUzNDk0YzY3MCIsImVtYWlsIjoicGVkcm8ucGVuZHVrb0BnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MjYzMTU5MDV9.yNtIPyywiJ5uveacM6rJrvvXJ0WFJaBfUfRMnlM_p-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Playstation 5\"\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://cryptic-crag-81593.herokuapp.com/api/products/60ef9c9e7d5f7100048e34db",
+							"protocol": "https",
+							"host": [
+								"cryptic-crag-81593",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"products",
+								"60ef9c9e7d5f7100048e34db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive product (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWRhNTdkNTM1NDcwNWUzNDk0YzY3MCIsImVtYWlsIjoicGVkcm8ucGVuZHVrb0BnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MjYzMTU5MDV9.yNtIPyywiJ5uveacM6rJrvvXJ0WFJaBfUfRMnlM_p-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://cryptic-crag-81593.herokuapp.com/api/products/archive/60eda6ba5354705e3494c680",
+							"protocol": "https",
+							"host": [
+								"cryptic-crag-81593",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"products",
+								"archive",
+								"60eda6ba5354705e3494c680"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve archived products (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWRhNTdkNTM1NDcwNWUzNDk0YzY3MCIsImVtYWlsIjoicGVkcm8ucGVuZHVrb0BnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MjYzMTU5MDV9.yNtIPyywiJ5uveacM6rJrvvXJ0WFJaBfUfRMnlM_p-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cryptic-crag-81593.herokuapp.com/api/products/archived/admin",
+							"protocol": "https",
+							"host": [
+								"cryptic-crag-81593",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"products",
+								"archived",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all orders (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWRhNTdkNTM1NDcwNWUzNDk0YzY3MCIsImVtYWlsIjoicGVkcm8ucGVuZHVrb0BnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MjYzMTU5MDV9.yNtIPyywiJ5uveacM6rJrvvXJ0WFJaBfUfRMnlM_p-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cryptic-crag-81593.herokuapp.com/api/admin/orders",
+							"protocol": "https",
+							"host": [
+								"cryptic-crag-81593",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"admin",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve single order (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWRhNTdkNTM1NDcwNWUzNDk0YzY3MCIsImVtYWlsIjoicGVkcm8ucGVuZHVrb0BnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MjYzMTU5MDV9.yNtIPyywiJ5uveacM6rJrvvXJ0WFJaBfUfRMnlM_p-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cryptic-crag-81593.herokuapp.com/api/admin/orders/60ef9d877d5f7100048e34e7",
+							"protocol": "https",
+							"host": [
+								"cryptic-crag-81593",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"admin",
+								"orders",
+								"60ef9d877d5f7100048e34e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve users (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWRhNTdkNTM1NDcwNWUzNDk0YzY3MCIsImVtYWlsIjoicGVkcm8ucGVuZHVrb0BnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MjYzMTU5MDV9.yNtIPyywiJ5uveacM6rJrvvXJ0WFJaBfUfRMnlM_p-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cryptic-crag-81593.herokuapp.com/api/users",
+							"protocol": "https",
+							"host": [
+								"cryptic-crag-81593",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set user as admin (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWRhNTdkNTM1NDcwNWUzNDk0YzY3MCIsImVtYWlsIjoicGVkcm8ucGVuZHVrb0BnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MjYzMTU5MDV9.yNtIPyywiJ5uveacM6rJrvvXJ0WFJaBfUfRMnlM_p-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://cryptic-crag-81593.herokuapp.com/api/admin/user_access/60eeb629b79f980004d8a9df",
+							"protocol": "https",
+							"host": [
+								"cryptic-crag-81593",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user_access",
+								"60eeb629b79f980004d8a9df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Welcome Page",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Leni\",\r\n    \"lastName\": \"Robredo\",\r\n    \"address\": \"Manila City\",\r\n    \"email\": \"leni.robredo@gmail.com\",\r\n    \"password\": \"leni123\",\r\n    \"mobileNo\": \"+639589854685\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/register",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User authentication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"pedro.penduko@gmail.com\",\r\n    \"password\": \"pedro123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/login",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWY5YmZlN2Q1ZjcxMDAwNDhlMzRkMiIsImVtYWlsIjoibGVuaS5yb2JyZWRvQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjYzMTU4MDV9.LRgfLkPjiFPOHmc4zH5osoSHZZFIukB05UzM-3RP0HI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/profile",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWY5YmZlN2Q1ZjcxMDAwNDhlMzRkMiIsImVtYWlsIjoibGVuaS5yb2JyZWRvQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjYzMTU4MDV9.LRgfLkPjiFPOHmc4zH5osoSHZZFIukB05UzM-3RP0HI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"lastName\": \"Robredo\"\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/profile/update",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"profile",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve all active products",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/products",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve single product",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/products/60ef9c9e7d5f7100048e34db",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"products",
+						"60ef9c9e7d5f7100048e34db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDYzZjc0M2QwOWEyMDAwNDA2M2Y5OCIsImVtYWlsIjoicEBnbWFpbC5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjI3ODM5NDI2fQ.rsrxtPz5Dl-Bd_pe4jFHgvaaPuasnUlrNx3SIikIlo8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"products\": \"[fghg,23,424]\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/users/checkout",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product to an order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWY5YmZlN2Q1ZjcxMDAwNDhlMzRkMiIsImVtYWlsIjoibGVuaS5yb2JyZWRvQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjYzMTU4MDV9.LRgfLkPjiFPOHmc4zH5osoSHZZFIukB05UzM-3RP0HI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": \"60eda7c95354705e3494c68e\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/users/checkout/60ef9d877d5f7100048e34e7",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"checkout",
+						"60ef9d877d5f7100048e34e7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve authenticated user's orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWY5YmZlN2Q1ZjcxMDAwNDhlMzRkMiIsImVtYWlsIjoibGVuaS5yb2JyZWRvQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjYzMTU4MDV9.LRgfLkPjiFPOHmc4zH5osoSHZZFIukB05UzM-3RP0HI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/user/orders",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve authenticated user's single order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWY5YmZlN2Q1ZjcxMDAwNDhlMzRkMiIsImVtYWlsIjoibGVuaS5yb2JyZWRvQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MjYzMTU4MDV9.LRgfLkPjiFPOHmc4zH5osoSHZZFIukB05UzM-3RP0HI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cryptic-crag-81593.herokuapp.com/api/user/orders/60ef9d877d5f7100048e34e7",
+					"protocol": "https",
+					"host": [
+						"cryptic-crag-81593",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"orders",
+						"60ef9d877d5f7100048e34e7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
