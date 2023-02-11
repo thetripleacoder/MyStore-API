@@ -2,7 +2,8 @@
 const User = require('../models/userModel');
 
 // libraries
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 // controller
 const auth = require('../auth');
@@ -57,7 +58,7 @@ module.exports.register = (req, res) => {
           newUser
             .save()
             .then((user) => {
-              res.send( user);
+              res.send(user);
             })
             .catch((err) => {
               res.send(err);
@@ -68,7 +69,7 @@ module.exports.register = (req, res) => {
           });
         }
       }
-  })
+    })
     .catch((err) => {
       res.send(err);
     });
