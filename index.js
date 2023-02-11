@@ -30,3 +30,6 @@ app.use('/api', productRoutes);
 app.use('/api', orderRoutes);
 
 app.listen(port, () => console.log(`Server is listening to port ${port}`));
+
+//  Export the Express API
+module.exports = app;
